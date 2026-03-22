@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -88,6 +88,11 @@
       backdrop-filter:blur(14px);
       background:var(--header-bg);
       border-bottom:1px solid var(--line);
+      transition:transform .28s ease;
+    }
+
+    .site-header.header-hidden{
+      transform:translateY(-100%);
     }
 
     .header-inner{
@@ -905,7 +910,7 @@
   </style>
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" id="siteHeader">
     <div class="container header-inner">
       <a class="brand" href="#inicio" aria-label="SOTEC Aberturas">
         <img class="brand-logo" src="https://iili.io/qSvIYNf.md.png" alt="Logo SOTEC Aberturas" />
@@ -1305,6 +1310,7 @@
       const toggle = document.getElementById('themeToggle');
       const icon = document.getElementById('themeIcon');
       const savedTheme = localStorage.getItem('sotec-theme');
+      const header = document.getElementById('siteHeader');
 
       function applyTheme(theme) {
         if (theme === 'light') {
@@ -1340,6 +1346,22 @@
 
         observer.observe(footer);
       }
+
+      let lastScrollY = window.scrollY;
+
+      window.addEventListener('scroll', function () {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY <= 10) {
+          header.classList.remove('header-hidden');
+        } else if (currentScrollY > lastScrollY) {
+          header.classList.add('header-hidden');
+        } else {
+          header.classList.remove('header-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+      }, { passive: true });
     })();
   </script>
 </body>
