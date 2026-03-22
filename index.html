@@ -478,6 +478,7 @@
       display:grid;
       grid-template-columns:repeat(3, minmax(0,1fr));
       gap:18px;
+      align-items:stretch;
     }
 
     .gallery-card{
@@ -487,19 +488,37 @@
       border:1px solid var(--line);
       background:var(--surface);
       box-shadow:var(--shadow);
-      min-height:260px;
+      min-height:320px;
+      display:flex;
+      flex-direction:column;
     }
 
-    .gallery-card img{
+    .gallery-media{
+      position:relative;
+      flex:1;
+      min-height:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+    }
+
+    .gallery-card.full-view .gallery-media{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+
+    .gallery-card.full-view img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+    }
+
+    .gallery-card.detail-view img{
       width:100%;
       height:100%;
       object-fit:cover;
       object-position:center;
-      transition:transform .45s ease;
-    }
-
-    .gallery-card:hover img{
-      transform:scale(1.03);
     }
 
     .gallery-label{
@@ -844,6 +863,14 @@
         grid-template-columns:1fr;
       }
 
+      .gallery-card{
+        min-height:300px;
+      }
+
+      .gallery-card.full-view .gallery-media{
+        padding:14px;
+      }
+
       .section-head h2,
       .cta-band h2{
         word-break:break-word;
@@ -1014,19 +1041,25 @@
         </div>
 
         <div class="gallery-grid">
-          <article class="gallery-card">
-            <img src="https://iili.io/qSvjQl1.md.png" alt="Trabajo realizado por SOTEC Aberturas" />
-            <div class="gallery-label">Terminaciones prolijas y presencia moderna</div>
+          <article class="gallery-card full-view">
+            <div class="gallery-media">
+              <img src="https://iili.io/qSSy7pt.md.png" alt="Abertura de aluminio realizada por SOTEC" />
+            </div>
+            <div class="gallery-label">Abertura completa con presencia limpia y terminacion prolija</div>
           </article>
 
-          <article class="gallery-card">
-            <img src="https://iili.io/qSvw2fI.md.png" alt="Aberturas de aluminio SOTEC" />
-            <div class="gallery-label">Aberturas de aluminio para distintos espacios</div>
+          <article class="gallery-card full-view">
+            <div class="gallery-media">
+              <img src="https://iili.io/qSSycjn.md.png" alt="Trabajo de aluminio SOTEC con vista completa" />
+            </div>
+            <div class="gallery-label">Vista amplia del trabajo para mostrar mejor estructura y resolucion</div>
           </article>
 
-          <article class="gallery-card">
-            <img src="https://iili.io/qSvjAAJ.md.png" alt="Proyecto de aluminio realizado por SOTEC" />
-            <div class="gallery-label">Soluciones pensadas para obra y renovacion</div>
+          <article class="gallery-card detail-view">
+            <div class="gallery-media">
+              <img src="https://iili.io/qSSyaTX.md.png" alt="Detalle de terminacion en abertura de aluminio" />
+            </div>
+            <div class="gallery-label">Detalle de terminacion que suma percepcion de calidad</div>
           </article>
         </div>
       </div>
